@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT-Профессии 2025 | Будущее начинается сегодня</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --secondary: #8b5cf6;
+            --accent: #06b6d4;
+            --dark: #0f172a;
+            --darker: #020617;
+            --light: #f8fafc;
+            --gray: #64748b;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--darker);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated background grid */
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(99, 102, 241, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(99, 102, 241, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .bg-glow {
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: -1;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .bg-glow:nth-child(2) {
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.1) 0%, transparent 70%);
+            animation-delay: -10s;
+            right: -200px;
+            top: 20%;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(100px, -100px) scale(1.1); }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--gray);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--light);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 5% 5rem;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            text-align: center;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 50px;
+            color: var(--primary);
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4); }
+            50% { box-shadow: 0 0 0 10px rgba(99, 102, 241, 0); }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #fff 0%, var(--gray) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto 3rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            box-shadow: 0 10px 30px -10px rgba(99, 102, 241, 0.5);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 40px -10px rgba(99, 102, 241, 0.6);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--light);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            margin-top: 5rem;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            color: var(--gray);
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Professions Section */
+        .professions {
+            padding: 6rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .filters {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.75rem 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--gray);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: rgba(99, 102, 241, 0.2);
+            border-color: var(--primary);
+            color: var(--light);
+        }
+
+        .professions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .profession-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profession-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .profession-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(99, 102, 241, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .profession-card:hover::before {
+            opacity: 1;
+        }
+
+        .profession-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .profession-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .profession-card .salary {
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 1.125rem;
+            margin-bottom: 1rem;
+        }
+
+        .profession-card p {
+            color: var(--gray);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            padding: 0.25rem 0.75rem;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 50px;
+            font-size: 0.75rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .demand-indicator {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #22c55e;
+            box-shadow: 0 0 10px #22c55e;
+            animation: blink 2s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Trends Section */
+        .trends {
+            padding: 6rem 5%;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .trends-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .trend-chart {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 24px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .chart-bar {
+            margin-bottom: 1.5rem;
+        }
+
+        .chart-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .chart-progress {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .chart-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 4px;
+            transition: width 1s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .chart-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Quiz Section */
+        .quiz {
+            padding: 6rem 5%;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .quiz-container {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 24px;
+            padding: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 3rem;
+        }
+
+        .quiz-question {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        .quiz-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .quiz-option {
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid transparent;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: left;
+        }
+
+        .quiz-option:hover {
+            border-color: var(--primary);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .quiz-option.selected {
+            border-color: var(--primary);
+            background: rgba(99, 102, 241, 0.2);
+        }
+
+        .quiz-result {
+            display: none;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(6, 182, 212, 0.1));
+            border-radius: 16px;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+        }
+
+        .quiz-result.show {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Skills Section */
+        .skills {
+            padding: 6rem 5%;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .skills-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-card {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .skill-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 5%;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--gray);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .trends-content { grid-template-columns: 1fr; }
+            .quiz-options { grid-template-columns: 1fr; }
+            .stats { gap: 2rem; }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-grid"></div>
+    <div class="bg-glow" style="left: -200px; top: 10%;"></div>
+    <div class="bg-glow"></div>
+
+    <nav>
+        <div class="logo">IT Future</div>
+        <ul class="nav-links">
+            <li><a href="#professions">Профессии</a></li>
+            <li><a href="#trends">Тренды</a></li>
+            <li><a href="#quiz">Тест</a></li>
+            <li><a href="#skills">Навыки</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="badge">🔥 Актуально в 2025</div>
+            <h1>IT-профессии — <span>путь в будущее</span></h1>
+            <p>Исследуйте самые востребованные специальности в сфере технологий. Выберите свою дорогу в цифровом мире.</p>
+            <div class="cta-buttons">
+                <a href="#professions" class="btn btn-primary">Исследовать профессии</a>
+                <a href="#quiz" class="btn btn-secondary">Пройти тест</a>
+            </div>
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-number" data-target="2.5">0</div>
+                    <div class="stat-label">млн вакансий</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number" data-target="85">0</div>
+                    <div class="stat-label">% роста за год</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number" data-target="300">0</div>
+                    <div class="stat-label">тыс. ₽ средняя зп</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="professions" id="professions">
+        <div class="section-header fade-in">
+            <h2>Востребованные профессии</h2>
+            <p>Выберите направление и изучите детали каждой специальности</p>
+        </div>
+        
+        <div class="filters fade-in">
+            <button class="filter-btn active" data-filter="all">Все</button>
+            <button class="filter-btn" data-filter="dev">Разработка</button>
+            <button class="filter-btn" data-filter="data">Данные</button>
+            <button class="filter-btn" data-filter="security">Безопасность</button>
+            <button class="filter-btn" data-filter="design">Дизайн</button>
+        </div>
+
+        <div class="professions-grid">
+            <div class="profession-card fade-in" data-category="dev">
+                <div class="demand-indicator"></div>
+                <div class="profession-icon">💻</div>
+                <h3>Frontend-разработчик</h3>
+                <div class="salary">150 000 — 400 000 ₽</div>
+                <p>Создаёт интерфейсы веб-приложений. Отвечает за то, как сайт выглядит и работает в браузере.</p>
+                <div class="tags">
+                    <span class="tag">JavaScript</span>
+                    <span class="tag">React</span>
+                    <span class="tag">Vue</span>
+                </div>
+            </div>
+
+            <div class="profession-card fade-in" data-category="dev">
+                <div class="demand-indicator"></div>
+                <div class="profession-icon">⚙️</div>
+                <h3>Backend-разработчик</h3>
+                <div class="salary">180 000 — 500 000 ₽</div>
+                <p>Разрабатывает серверную часть приложений, работает с базами данных и API.</p>
+                <div class="tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">Java</span>
+                    <span class="tag">Go</span>
+                </div>
+            </div>
+
+            <div class="profession-card fade-in" data-category="data">
+                <div class="demand-indicator"></div>
+                <div class="profession-icon">🤖</div>
+                <h3>Data Scientist</h3>
+                <div class="salary">200 000 — 600 000 ₽</div>
+                <p>Анализирует данные, строит прогнозы и создаёт ML-модели для бизнеса.</p>
+                <div class="tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">ML</span>
+                    <span class="tag">SQL</span>
+                </div>
+            </div>
+
+            <div class="profession-card fade-in" data-category="security">
+                <div class="demand-indicator"></div>
+                <div class="profession-icon">🔒</div>
+                <h3>Специалист по ИБ</h3>
+                <div class="salary">180 000 — 450 000 ₽</div>
+                <p>Защищает системы от кибератак, ищет уязвимости и разрабатывает меры защиты.</p>
+                <div class="tags">
+                    <span class="tag">Linux</span>
+                    <span class="tag">Сети</span>
+                    <span class="tag">Kali</span>
+                </div>
+            </div>
+
+            <div class="profession-card fade-in" data-category="dev">
+                <div class="profession-icon">📱</div>
+                <h3>Mobile-разработчик</h3>
+                <div class="salary">160 000 — 450 000 ₽</div>
+                <p>Создаёт приложения для iOS и Android. Работает с нативными и кроссплатформенными технологиями.</p>
+                <div class="tags">
+                    <span class="tag">Swift</span>
+                    <span class="tag">Kotlin</span>
+                    <span class="tag">Flutter</span>
+                </div>
+            </div>
+
+            <div class="profession-card fade-in" data-category="design">
+                <div class="profession-icon">🎨</div>
+                <h3>UX/UI Дизайнер</h3>
+                <div class="salary">120 000 — 350 000 ₽</div>
+                <p>Проектирует пользовательский опыт и интерфейсы цифровых продуктов.</p>
+                <div class="tags">
+                    <span class="tag">Figma</span>
+                    <span class="tag">Research</span>
+                    <span class="tag">Prototyping</span>
+                </div>
+            </div>
+
+            <div class="profession-card fade-in" data-category="dev">
+                <div class="profession-icon">☁️</div>
+                <h3>DevOps-инженер</h3>
+                <div class="salary">200 000 — 550 000 ₽</div>
+                <p>Автоматизирует процессы разработки и управляет инфраструктурой в облаке.</p>
+                <div class="tags">
+                    <span class="tag">Docker</span>
+                    <span class="tag">K8s</span>
+                    <span class="tag">AWS</span>
+                </div>
+            </div>
+
+            <div class="profession-card fade-in" data-category="data">
+                <div class="profession-icon">📊</div>
+                <h3>Аналитик данных</h3>
+                <div class="salary">130 000 — 350 000 ₽</div>
+                <p>Превращает сырые данные в понятные отчёты и помогает принимать бизнес-решения.</p>
+                <div class="tags">
+                    <span class="tag">SQL</span>
+                    <span class="tag">Power BI</span>
+                    <span class="tag">Excel</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="trends" id="trends">
+        <div class="trends-content">
+            <div class="fade-in">
+                <h2>Тренды 2025</h2>
+                <p style="color: var(--gray); margin: 1rem 0 2rem;">Какие технологии набирают популярность и где искать возможности</p>
+                <ul style="list-style: none; line-height: 2;">
+                    <li>🚀 <strong>Искусственный интеллект</strong> — интеграция AI во все сферы</li>
+                    <li>🔐 <strong>Кибербезопасность</strong> — рост спроса на защиту данных</li>
+                    <li>☁️ <strong>Облачные технологии</strong> — миграция инфраструктуры</li>
+                    <li>📱 <strong>Мобильная разработка</strong> — рост мобильного трафика</li>
+                </ul>
+            </div>
+            <div class="trend-chart fade-in">
+                <h3 style="margin-bottom: 2rem;">Рост вакансий по направлениям</h3>
+                <div class="chart-bar">
+                    <div class="chart-label">
+                        <span>ИИ и Machine Learning</span>
+                        <span>+127%</span>
+                    </div>
+                    <div class="chart-progress">
+                        <div class="chart-fill" style="width: 95%"></div>
+                    </div>
+                </div>
+                <div class="chart-bar">
+                    <div class="chart-label">
+                        <span>Кибербезопасность</span>
+                        <span>+85%</span>
+                    </div>
+                    <div class="chart-progress">
+                        <div class="chart-fill" style="width: 80%"></div>
+                    </div>
+                </div>
+                <div class="chart-bar">
+                    <div class="chart-label">
+                        <span>Cloud/DevOps</span>
+                        <span>+72%</span>
+                    </div>
+                    <div class="chart-progress">
+                        <div class="chart-fill" style="width: 70%"></div>
+                    </div>
+                </div>
+                <div class="chart-bar">
+                    <div class="chart-label">
+                        <span>Мобильная разработка</span>
+                        <span>+45%</span>
+                    </div>
+                    <div class="chart-progress">
+                        <div class="chart-fill" style="width: 55%"></div>
+                    </div>
+                </div>
+                <div class="chart-bar">
+                    <div class="chart-label">
+                        <span>Веб-разработка</span>
+                        <span>+38%</span>
+                    </div>
+                    <div class="chart-progress">
+                        <div class="chart-fill" style="width: 45%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="quiz" id="quiz">
+        <div class="section-header fade-in">
+            <h2>Какая профессия вам подходит?</h2>
+            <p>Пройдите короткий тест и узнайте своё идеальное направление в IT</p>
+        </div>
+        
+        <div class="quiz-container fade-in">
+            <div id="quiz-step-1">
+                <div class="quiz-question">Что вам ближе?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectOption(1, 'creative')">
+                        <strong>🎨 Создавать красивые интерфейсы</strong>
+                        <p style="font-size: 0.9rem; color: var(--gray); margin-top: 0.5rem;">Дизайн, визуализация, пользовательский опыт</p>
+                    </div>
+                    <div class="quiz-option" onclick="selectOption(1, 'analytic')">
+                        <strong>🔍 Решать сложные задачи</strong>
+                        <p style="font-size: 0.9rem; color: var(--gray); margin-top: 0.5rem;">Логика, алгоритмы, математика</p>
+                    </div>
+                    <div class="quiz-option" onclick="selectOption(1, 'social')">
+                        <strong>👥 Работать с людьми</strong>
+                        <p style="font-size: 0.9rem; color: var(--gray); margin-top: 0.5rem;">Коммуникация, управление, переговоры</p>
+                    </div>
+                    <div class="quiz-option" onclick="selectOption(1, 'system')">
+                        <strong>⚙️ Настраивать системы</strong>
+                        <p style="font-size: 0.9rem; color: var(--gray); margin-top: 0.5rem;">Инфраструктура, безопасность, сервера</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="quiz-step-2" style="display: none;">
+                <div class="quiz-question">Что из этого интереснее?</div>
+                <div class="quiz-options" id="step2-options">
+                    <!-- Dynamic content -->
+                </div>
+            </div>
+
+            <div id="quiz-result" class="quiz-result">
+                <h3 style="margin-bottom: 1rem; color: var(--primary);">🎯 Ваш результат</h3>
+                <div id="result-content"></div>
+                <button class="btn btn-primary" onclick="resetQuiz()" style="margin-top: 1.5rem;">Пройти ещё раз</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="skills" id="skills">
+        <div class="section-header fade-in">
+            <h2>Ключевые навыки 2025</h2>
+            <p>Что нужно знать, чтобы быть востребованным специалистом</p>
+        </div>
+        
+        <div class="skills-grid">
+            <div class="skill-card fade-in">
+                <div class="skill-icon">🧠</div>
+                <h3>AI-инструменты</h3>
+                <p style="color: var(--gray);">Умение работать с ChatGPT, GitHub Copilot и другими AI-ассистентами</p>
+            </div>
+            <div class="skill-card fade-in">
+                <div class="skill-icon">🔤</div>
+                <h3>Английский язык</h3>
+                <p style="color: var(--gray);">B2 и выше для чтения документации и работы в международных командах</p>
+            </div>
+            <div class="skill-card fade-in">
+                <div class="skill-icon">🤝</div>
+                <h3>Soft Skills</h3>
+                <p style="color: var(--gray);">Коммуникация, тайм-менеджмент, работа в команде</p>
+            </div>
+            <div class="skill-card fade-in">
+                <div class="skill-icon">📚</div>
+                <h3>Обучаемость</h3>
+                <p style="color: var(--gray);">Готовность постоянно изучать новые технологии</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 IT Future — Школьный проект об актуальности IT-профессий</p>
+        <p style="margin-top: 0.5rem; font-size: 0.875rem;">Создано с ❤️ для образовательных целей</p>
+    </footer>
+
+    <script>
+        // Counter animation
+        const counters = document.querySelectorAll('.stat-number');
+        const speed = 200;
+
+        const animateCounters = () => {
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                const count = +counter.innerText;
+                const inc = target / speed;
+
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + inc);
+                    setTimeout(animateCounters, 20);
+                } else {
+                    counter.innerText = target + (target > 100 ? '' : target > 10 ? 'K' : 'M+');
+                }
+            });
+        };
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    if (entry.target.querySelector('.stat-number')) {
+                        animateCounters();
+                    }
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Filter functionality
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const cards = document.querySelectorAll('.profession-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const filter = btn.getAttribute('data-filter');
+                
+                cards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                        card.style.display = 'block';
+                        setTimeout(() => card.style.opacity = '1', 10);
+                    } else {
+                        card.style.opacity = '0';
+                        setTimeout(() => card.style.display = 'none', 300);
+                    }
+                });
+            });
+        });
+
+        // Quiz logic
+        let quizAnswers = {};
+
+        function selectOption(step, value) {
+            quizAnswers[step] = value;
+            
+            if (step === 1) {
+                document.getElementById('quiz-step-1').style.display = 'none';
+                document.getElementById('quiz-step-2').style.display = 'block';
+                
+                const options2 = {
+                    'creative': [
+                        {val: 'ui', text: 'Рисовать иллюстрации и иконки', sub: 'Графический дизайн, брендинг'},
+                        {val: 'ux', text: 'Проектировать удобные приложения', sub: 'UX-исследования, прототипирование'},
+                        {val: 'frontend', text: 'Верстать сайты', sub: 'HTML, CSS, анимации'},
+                        {val: 'games', text: 'Создавать игры', sub: 'Game design, Unity, Unreal'}
+                    ],
+                    'analytic': [
+                        {val: 'data', text: 'Анализировать большие данные', sub: 'Data Science, ML, статистика'},
+                        {val: 'backend', text: 'Строить сложные системы', sub: 'Архитектура, базы данных'},
+                        {val: 'algo', text: 'Разрабатывать алгоритмы', sub: 'C++, высоконагруженные системы'},
+                        {val: 'science', text: 'Заниматься исследованиями', sub: 'AI Research, Computer Science'}
+                    ],
+                    'social': [
+                        {val: 'pm', text: 'Управлять проектами', sub: 'Product Management'},
+                        {val: 'hr', text: 'Нанимать разработчиков', sub: 'IT Recruiting, HR'},
+                        {val: 'sales', text: 'Продавать IT-решения', sub: 'IT Sales, Presale'},
+                        {val: 'support', text: 'Помогать пользователям', sub: 'Customer Success, Support'}
+                    ],
+                    'system': [
+                        {val: 'devops', text: 'Автоматизировать процессы', sub: 'CI/CD, облака, Docker'},
+                        {val: 'security', text: 'Ловить хакеров', sub: 'Cybersecurity, Pentest'},
+                        {val: 'admin', text: 'Настраивать сервера', sub: 'System Administration'},
+                        {val: 'net', text: 'Строить сети', sub: 'Network Engineering'}
+                    ]
+                };
+                
+                const container = document.getElementById('step2-options');
+                container.innerHTML = options2[value].map(opt => `
+                    <div class="quiz-option" onclick="finishQuiz('${opt.val}')">
+                        <strong>${opt.text}</strong>
+                        <p style="font-size: 0.9rem; color: var(--gray); margin-top: 0.5rem;">${opt.sub}</p>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function finishQuiz(result) {
+            const professions = {
+                'ui': {name: 'UI/UX Дизайнер', desc: 'Создавайте красивые и удобные интерфейсы. Изучайте Figma, Adobe Creative Suite и принципы дизайна.', icon: '🎨'},
+                'ux': {name: 'UX-исследователь', desc: 'Изучайте поведение пользователей и создавайте продукты, которые решают реальные проблемы.', icon: '🔍'},
+                'frontend': {name: 'Frontend-разработчик', desc: 'Превращайте дизайн в работающий код. JavaScript, React, CSS-анимации — ваши инструменты.', icon: '💻'},
+                'games': {name: 'Game Developer', desc: 'Создавайте игры, которые увлекают миллионы. Unity, Unreal Engine, C#.', icon: '🎮'},
+                'data': {name: 'Data Scientist', desc: 'Находите закономерности в данных и стройте предсказательные модели. Python, SQL, ML.', icon: '🤖'},
+                'backend': {name: 'Backend-разработчик', desc: 'Стройте надёжные серверные системы. Java, Python, Go, микросервисы.', icon: '⚙️'},
+                'algo': {name: 'Software Engineer', desc: 'Решайте сложные алгоритмические задачи. C++, распределённые системы.', icon: '🧮'},
+                'science': {name: 'AI Researcher', desc: 'Занимайтесь передовыми исследованиями в области искусственного интеллекта.', icon: '🧬'},
+                'pm': {name: 'Product Manager', desc: 'Управляйте разработкой продуктов от идеи до запуска. Agile, стратегия, метрики.', icon: '📋'},
+                'hr': {name: 'IT Recruiter', desc: 'Находите таланты в IT. Понимание технологий и навыки коммуникации.', icon: '👥'},
+                'sales': {name: 'IT Sales Manager', desc: 'Продавайте сложные технологические решения крупным клиентам.', icon: '💼'},
+                'support': {name: 'Customer Success', desc: 'Помогайте клиентам получать максимум от продукта.', icon: '🤝'},
+                'devops': {name: 'DevOps Engineer', desc: 'Автоматизируйте разработку и управляйте инфраструктурой. Docker, Kubernetes, AWS.', icon: '☁️'},
+                'security': {name: 'Security Specialist', desc: 'Защищайте компании от киберугроз. Этичный хакинг, аудит безопасности.', icon: '🛡️'},
+                'admin': {name: 'System Administrator', desc: 'Поддерживайте работу серверов и сетей. Linux, Windows Server.', icon: '🖥️'},
+                'net': {name: 'Network Engineer', desc: 'Проектируйте и поддерживайте сетевую инфраструктуру. Cisco, маршрутизация.', icon: '🌐'}
+            };
+            
+            const prof = professions[result];
+            document.getElementById('quiz-step-2').style.display = 'none';
+            document.getElementById('quiz-result').classList.add('show');
+            document.getElementById('result-content').innerHTML = `
+                <div style="font-size: 4rem; margin-bottom: 1rem;">${prof.icon}</div>
+                <h2 style="margin-bottom: 1rem;">${prof.name}</h2>
+                <p style="color: var(--gray); line-height: 1.6;">${prof.desc}</p>
+            `;
+        }
+
+        function resetQuiz() {
+            quizAnswers = {};
+            document.getElementById('quiz-result').classList.remove('show');
+            document.getElementById('quiz-step-1').style.display = 'block';
+            document.getElementById('quiz-step-2').style.display = 'none';
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
